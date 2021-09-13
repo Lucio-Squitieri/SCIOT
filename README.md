@@ -35,5 +35,46 @@ At this stage if the IRT bot noticed a message published on iot/rainAlert it wil
   * consumer-wind: process the values received by the wind sensor.
 
 # Getting Started
+> Pay attention: Its Raining Then requires **Docker and NodeJS**
+Now, I'll guide you within the different phases of the installation
+First of all open two different terminal,
++ Docker Nuclio run:
+
+<pre>docker run -p 8070:8070 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp nuclio/dashboard:stable-amd64</pre>
++ Docker RabbitMQ run:
+ 
+<pre>docker run -p 9000:15672  -p 1883:1883 -p 5672:5672  cyrilix/rabbitmq-mqtt</pre>
+
+
+In your browser search **localhost:8070** to check Nuclio installation and **localhost:9000** to check RabbitMQ installation.
+Follow this instruction to import the project:
++ From the Nuclio homepage, create a new project
++ Press *Create function *, *Import* and from **yamlFolder** import the two functions
++ **Important**: in both the functions change the IP address with your IP, you'll find (*Put your IP here*) and from consumer function, go on trigger windows and change the IP again. 
++ Deploy both functions, **Deploy button** 
++ Now both functions are running!
+
+How to create your Telegram Bot
++ Go on telegram, search **BotFather**
++ Press *start* and */newBot* command
++ Give it a name, and unique ID
++ Now, copy the bot token and paste it in the code of IRT.js, in var BOT_TOKEN (line 5)
++ In the same .js, insert your IP address, where are called the function "connect" (line 42 and 86)
+
++ Installation phase and dependencies
++ Open a terminal and write 
+  + npm install
+  + node src/IRT.js
+
++ Start Telegram Bot for the interaction
++ Set the MQTT Dash application as below.
+<img src="https://user-images.githubusercontent.com/55919285/133108461-977e99ce-e234-46ab-8915-50027341b023.jpg" width="400">
+* Create two buttons setted as follows
+<img src="https://user-images.githubusercontent.com/55919285/133108530-643c4680-89dd-46ab-a2ca-c3157cb0647d.jpg" width="400">
+<img src="https://user-images.githubusercontent.com/55919285/133108534-b485a4ad-914f-424c-b585-d36d485c9167.jpg" width="400">
+
+Now you can start using it.
+
+
 
 
