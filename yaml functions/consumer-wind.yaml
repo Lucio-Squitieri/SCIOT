@@ -1,0 +1,33 @@
+metadata:
+  name: consumer-wind
+  labels:
+    nuclio.io/project-name: eae74a99-fd5b-4a98-befb-90adf4c988ca
+spec:
+  handler: "main:handler"
+  runtime: nodejs
+  resources: {}
+  image: "nuclio/processor-consumer-wind:latest"
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPU: 75
+  triggers:
+    WindTrigger:
+      class: ""
+      kind: mqtt
+      url: "guest:guest@192.168.1.5:1883"
+      username: guest
+      password: guest
+      attributes:
+        subscriptions:
+          - qos: 0
+            topic: iot/sensors/infoWind
+  build:
+    functionSourceCode: dmFyIGFtcXAgPSByZXF1aXJlKCJhbXFwbGliIik7DQoNCmZ1bmN0aW9uIHNlbmRfYWxlcnQobXNnKSB7DQogIHZhciBxID0gImlvdC93aW5kQWxlcnQiOw0KICBhbXFwDQogICAgLmNvbm5lY3QoImFtcXA6Ly9ndWVzdDpndWVzdEAxOTIuMTY4LjEuNTo1NjcyIikNCiAgICAudGhlbihmdW5jdGlvbiAoY29ubikgew0KICAgICAgcmV0dXJuIGNvbm4NCiAgICAgICAgLmNyZWF0ZUNoYW5uZWwoKQ0KICAgICAgICAudGhlbihmdW5jdGlvbiAoY2gpIHsNCiAgICAgICAgICB2YXIgb2sgPSBjaC5hc3NlcnRRdWV1ZShxLCB7IGR1cmFibGU6IGZhbHNlIH0pOw0KICAgICAgICAgIHJldHVybiBvay50aGVuKGZ1bmN0aW9uIChfcW9rKSB7DQogICAgICAgICAgICBjaC5zZW5kVG9RdWV1ZShxLCBCdWZmZXIuZnJvbShtc2cpKTsNCiAgICAgICAgICAgIGNvbnNvbGUubG9nKCIgW3hdIFNlbnQgJyVzJyIsIG1zZyk7DQogICAgICAgICAgICByZXR1cm4gY2guY2xvc2UoKTsNCiAgICAgICAgICB9KTsNCiAgICAgICAgfSkNCiAgICAgICAgLmZpbmFsbHkoZnVuY3Rpb24gKCkgew0KICAgICAgICAgIGNvbm4uY2xvc2UoKTsNCiAgICAgICAgfSk7DQogICAgfSkNCiAgICAuY2F0Y2goY29uc29sZS53YXJuKTsNCn0NCg0KZnVuY3Rpb24gYmluMnN0cmluZyhhcnJheSkgew0KICB2YXIgcmVzdWx0ID0gIiI7DQogIGZvciAodmFyIGkgPSAwOyBpIDwgYXJyYXkubGVuZ3RoOyArK2kpIHsNCiAgICByZXN1bHQgKz0gU3RyaW5nLmZyb21DaGFyQ29kZShhcnJheVtpXSk7DQogIH0NCiAgcmV0dXJuIHJlc3VsdDsNCn0NCg0KZXhwb3J0cy5oYW5kbGVyID0gZnVuY3Rpb24gKGNvbnRleHQsIGV2ZW50KSB7DQogIHZhciBfZXZlbnQgPSBKU09OLnBhcnNlKEpTT04uc3RyaW5naWZ5KGV2ZW50KSk7DQogIHZhciBfZGF0YSA9IGJpbjJzdHJpbmcoX2V2ZW50LmJvZHkuZGF0YSk7DQogIHZhciBpbmZvV2luZCA9IHBhcnNlSW50KF9kYXRhKTsNCiAgDQogIGlmKGluZm9XaW5kPjQ5KSBzZW5kX2FsZXJ0KCIiICsgaW5mb1dpbmQpOw0KICANCiAgY29udGV4dC5jYWxsYmFjaygiU2VudCBpbmZvV2luZDogIiArIGluZm9XaW5kKTsNCn07DQo=
+    commands:
+      - 'npm isntall amqplib'
+    runtimeAttributes:
+      repositories: []
+    codeEntryType: sourceCode
+  platform: {}
+  readinessTimeoutSeconds: 60
+  version: 1
